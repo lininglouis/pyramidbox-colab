@@ -3,6 +3,5 @@
 log/
 *.jpg
 *.xml
-data/train.txt
-data/val.txt
 data/*.txt
+
