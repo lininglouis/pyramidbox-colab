@@ -65,11 +65,15 @@ _C.HOME = '/home/data/lj/'
 
 # face config
 _C.FACE = EasyDict()
-_C.FACE.TRAIN_FILE = './data/face_train.txt'
-_C.FACE.VAL_FILE = './data/face_val.txt'
-_C.FACE.FDDB_DIR = '/home/data/lj/FDDB'
-_C.FACE.WIDER_DIR = '/home/data/lj/WIDER'
-_C.FACE.AFW_DIR = '/home/data/lj/AFW'
-_C.FACE.PASCAL_DIR = '/home/data/lj/PASCAL_FACE'
+_C.FACE.TRAIN_FILE = './data/train_open_mask.txt'
+_C.FACE.VAL_FILE = './data/val_open_mask.txt'
 _C.FACE.OVERLAP_THRESH = 0.35
+_C.FACE.DATA_DIR = r'C:\Users\ESS User\Documents\GitHub\wji_data\multi_mask_data\open_mask\all'
+
+
+
+# _C.FACE.FDDB_DIR = '/home/data/lj/FDDB'
+# _C.FACE.WIDER_DIR = '/home/data/lj/WIDER'
+# _C.FACE.AFW_DIR = '/home/data/lj/AFW'
+# _C.FACE.PASCAL_DIR = '/home/data/lj/PASCAL_FACE'
 

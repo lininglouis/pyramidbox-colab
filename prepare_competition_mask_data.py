@@ -53,13 +53,10 @@ def get_image_label_pair(COMPETITION_MASK_DATA_DIR):
     return effective_imagesPath, effective_labelsPath
 
 
-def prepare_competition_MASK(COMPETITION_MASK_DATA_DIR):
-    img_paths, labels = get_image_label_pair(COMPETITION_MASK_DATA_DIR)
-    MASK_TRAIN_FILE = cfg.FACE.TRAIN_FILE
-    MASK_VAL_FILE = cfg.FACE.VAL_FILE
+def prepare_competition_MASK():
+    img_paths, labels = get_image_label_pair(cfg.FACE.DATA_DIR)
     train_img_paths, val_img_paths, train_labels, val_labels = \
         train_test_split(img_paths, labels, test_size=0.20, random_state=42)
-
 
     for i in range(10):
         print(img_paths[i], labels[i])
@@ -73,8 +70,8 @@ def prepare_competition_MASK(COMPETITION_MASK_DATA_DIR):
         print(val_img_paths[-i], val_labels[-i])
     print('verification=-==============above==============')
 
-    generate_txt(train_img_paths, train_labels, MASK_TRAIN_FILE)
-    generate_txt(val_img_paths, val_labels, MASK_VAL_FILE)
+    generate_txt(train_img_paths, train_labels, cfg.FACE.TRAIN_FILE)
+    generate_txt(val_img_paths, val_labels, cfg.FACE.VAL_FILE)
 
 
 
@@ -155,11 +152,8 @@ def prepare_competition_MASK_for_classification():
 
 
 if __name__ == '__main__':
-    COMPETITION_MASK_DATA_DIR = r'./mask_data/10'
-    #COMPETITION_MASK_DATA_DIR = '/home/data/10'
-    prepare_competition_MASK(COMPETITION_MASK_DATA_DIR)
-
-
+    # settings. data_dir, train_txt_path, test_txt_path
+    prepare_competition_MASK()
     #prepare_competition_MASK_for_classification()
 
 

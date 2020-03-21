@@ -65,11 +65,16 @@ _C.HOME = '/home/data/lj/'
 
 # face config
 _C.FACE = EasyDict()
-_C.FACE.TRAIN_FILE = './data/face_train.txt'
-_C.FACE.VAL_FILE = './data/face_val.txt'
-_C.FACE.FDDB_DIR = '/home/data/lj/FDDB'
-_C.FACE.WIDER_DIR = '/home/data/lj/WIDER'
-_C.FACE.AFW_DIR = '/home/data/lj/AFW'
-_C.FACE.PASCAL_DIR = '/home/data/lj/PASCAL_FACE'
+_C.FACE.TRAIN_FILE = './data/train_competition_mask.txt'
+_C.FACE.VAL_FILE = './data/val_competition_mask.txt'
 _C.FACE.OVERLAP_THRESH = 0.35
+
+_C.FACE.DATA_DIR = r'./mask_data/10'
+
+
+# _C.FACE.FDDB_DIR = '/home/data/lj/FDDB'
+# _C.FACE.WIDER_DIR = '/home/data/lj/WIDER'
+# _C.FACE.AFW_DIR = '/home/data/lj/AFW'
+# _C.FACE.PASCAL_DIR = '/home/data/lj/PASCAL_FACE'
+
 
