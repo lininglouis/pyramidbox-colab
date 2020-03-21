@@ -13,7 +13,7 @@ import types
 from PIL import Image, ImageEnhance, ImageDraw
 import math
 import six
-from data.config import cfg
+from data.config_competition_mask import cfg
 import random
 
 

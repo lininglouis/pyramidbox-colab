@@ -55,7 +55,7 @@ class PriorBox(object):
 
 
 if __name__ == '__main__':
-    from data.config import cfg
+    from data.config_competition_mask import cfg
     p = PriorBox([640, 640], cfg)
     out = p.forward()
     print(out.size())

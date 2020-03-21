@@ -20,7 +20,7 @@ import numpy as np
 from torch.autograd import Variable
 import torch.backends.cudnn as cudnn
 
-from data.config import cfg
+from data.config_competition_mask import cfg
 from pyramidbox import build_net
 from layers.modules import MultiBoxLoss
 from data.widerface import WIDERDetection, detection_collate

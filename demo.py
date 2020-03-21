@@ -17,7 +17,7 @@ import time
 import numpy as np
 from PIL import Image
 
-from data.config import cfg
+from data.config_competition_mask import cfg
 from pyramidbox import build_net
 from utils.augmentations import to_chw_bgr
 

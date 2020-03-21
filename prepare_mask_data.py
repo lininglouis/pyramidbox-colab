@@ -3,7 +3,7 @@
 import glob
 import xml.etree.ElementTree as ET
 import os
-from data.config import cfg
+from data.config_competition_mask import cfg
 import cv2
 from sklearn.model_selection import train_test_split
 
@@ -35,26 +35,26 @@ def read_xml(xml_file):
     return filename, (height, width), objects
 
 
-def get_image_label_pair(MASK_DATA_DIR):
+def get_image_label_pair(COMPETITION_MASK_DATA_DIR):
 
-    img_paths = glob.glob('{}/*.jpg'.format(MASK_DATA_DIR))
-    labels = glob.glob('{}/*.xml'.format(MASK_DATA_DIR))
+    img_paths = glob.glob('{}/*.jpg'.format(COMPETITION_MASK_DATA_DIR))
+    labels = glob.glob('{}/*.xml'.format(COMPETITION_MASK_DATA_DIR))
     img_paths.sort()
     labels.sort()
 
+    effective_imagesPath = []
     effective_labelsPath = []
     for imgPath in img_paths:
         corre_labelPath = imgPath.replace('jpg', 'xml')
-        if os.path.exists(corre_labelPath):
+        if os.path.exists(corre_labelPath) and os.path.exists(imgPath):
+            effective_imagesPath.append(imgPath)
             effective_labelsPath.append(corre_labelPath)
 
-    labels = effective_labelsPath[:]
-    return img_paths, labels
+    return effective_imagesPath, effective_labelsPath
 
 
-def prepare_MASK():
-    global MASK_DATA_DIR
-    img_paths, labels = get_image_label_pair(MASK_DATA_DIR)
+def prepare_competition_MASK(COMPETITION_MASK_DATA_DIR):
+    img_paths, labels = get_image_label_pair(COMPETITION_MASK_DATA_DIR)
     MASK_TRAIN_FILE = cfg.FACE.TRAIN_FILE
     MASK_VAL_FILE = cfg.FACE.VAL_FILE
     train_img_paths, val_img_paths, train_labels, val_labels = \
@@ -111,10 +111,10 @@ def mkdir_if_not_exists(dir_path):
         os.mkdir(dir_path)
 
 
-def prepare_MASK_for_classification():
-    global MASK_DATA_DIR
-    img_paths = glob.glob('{}/*.jpg'.format(MASK_DATA_DIR))
-    labels = glob.glob('{}/*.xml'.format(MASK_DATA_DIR))
+def prepare_competition_MASK_for_classification():
+    global COMPETITION_MASK_DATA_DIR
+    img_paths = glob.glob('{}/*.jpg'.format(COMPETITION_MASK_DATA_DIR))
+    labels = glob.glob('{}/*.xml'.format(COMPETITION_MASK_DATA_DIR))
     img_paths.sort()
     labels.sort()
 
@@ -155,10 +155,12 @@ def prepare_MASK_for_classification():
 
 
 if __name__ == '__main__':
-    #MASK_DATA_DIR = r'./mask_data/10'
-    MASK_DATA_DIR = '/home/data/10'
-    prepare_MASK()
-    #prepare_MASK_for_classification()
+    COMPETITION_MASK_DATA_DIR = r'./mask_data/10'
+    #COMPETITION_MASK_DATA_DIR = '/home/data/10'
+    prepare_competition_MASK(COMPETITION_MASK_DATA_DIR)
+
+
+    #prepare_competition_MASK_for_classification()
 
 
 

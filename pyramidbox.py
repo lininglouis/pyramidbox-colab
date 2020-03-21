@@ -13,7 +13,7 @@ import torch.nn.functional as F
 from torch.autograd import Variable
 import os
 from layers import *
-from data.config import cfg
+from data.config_competition_mask import cfg
 import numpy as np
 
 
