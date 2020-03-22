@@ -79,10 +79,10 @@ def train():
         print('Resuming training, loading {}...'.format(args.resume))
         start_epoch = net.load_weights(args.resume)
         iteration = start_epoch * per_epoch_size
-    # else:
-    #     vgg_weights = torch.load(args.save_folder + args.basenet)
-    #     print('Load base network....')
-    #     net.vgg.load_state_dict(vgg_weights)
+    else:
+        vgg_weights = torch.load(args.save_folder + args.basenet)
+        print('Load base network....')
+        net.vgg.load_state_dict(vgg_weights)
 
 
     if not args.resume:
@@ -151,7 +151,7 @@ def train():
                     face_loss, head_loss))
                 print('->> lr: {}'.format(optimizer.param_groups[0]['lr']))
 
-            if iteration != 0 and iteration % 500 == 0:
+            if iteration != 0 and iteration % 1000 == 0:
                 print('Saving state, iter:', iteration)
                 file = 'pyramidbox_' + repr(iteration) + '.pth'
                 torch.save(pyramidbox.state_dict(),
