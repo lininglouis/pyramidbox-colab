@@ -71,7 +71,7 @@ _C.FACE.OVERLAP_THRESH = 0.35
 
 
 #_C.FACE.DATA_DIR = r'./mask_data/10'
-_C.FACE.DATA_DIR = r'/content/drive/My Drive/Colab Notebooks/multi_mask_data/competition_mask_data/10'
+_C.FACE.DATA_DIR = r'/content/drive/My Drive/xlab/multi_mask_data/competition_mask_data/10'
 
 
 # _C.FACE.FDDB_DIR = '/home/data/lj/FDDB'
