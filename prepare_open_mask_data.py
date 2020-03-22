@@ -64,7 +64,7 @@ def generate_txt(img_paths, labels, filepath):
         path = img_paths[index]
         im_height, im_width = cv2.imread(path).shape[:2]
         boxes = bbox[index]
-        fw.write('{}:{}:'.format(path, len(boxes)))
+        fw.write('{}:{}'.format(path, len(boxes)))
         for box in boxes:
             xmin, ymin, xmax, ymax = box
             if xmax > im_width or (ymax>im_height):
@@ -73,10 +73,11 @@ def generate_txt(img_paths, labels, filepath):
 
             width = (xmax - xmin) + 1
             height = (ymax - ymin) + 1
-            data = '{}:{}:{}:{}:{}'.format(xmin, ymin, width, height, 1)
+            data = ':{}:{}:{}:{}:{}'.format(xmin, ymin, width, height, 1)
             fw.write(data)
         fw.write('\n')
     fw.close()
+
 
 
 
