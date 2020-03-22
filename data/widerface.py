@@ -86,8 +86,7 @@ class WIDERDetection(data.Dataset):
                 #img = img.astype(np.float32)
                 face_box = face_target[:, :-1]
                 head_box = self.expand_bboxes(face_box)
-                head_target = np.hstack((head_box, face_target[
-                                        :, -1][:, np.newaxis]))
+                head_target = np.hstack((head_box, face_target[ :, -1][:, np.newaxis]))
                 break
             else:
                 index = random.randrange(0, self.num_samples)

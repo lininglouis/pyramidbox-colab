@@ -103,7 +103,7 @@ if __name__ == '__main__':
 
     labelPaths = glob.glob(os.path.join(cfg.FACE.DATA_DIR, "label", '*.xml'))
     imagePaths = glob.glob(os.path.join(cfg.FACE.DATA_DIR, "data", '*.jpg'))
-    imagePaths, labelPaths = get_clean_data_pairs(imagePaths[:10])
+    imagePaths, labelPaths = get_clean_data_pairs(imagePaths[:])
     train_img_paths, val_img_paths, train_labels, val_labels = \
         train_test_split(imagePaths, labelPaths, test_size=0.20, random_state=42)
 
