@@ -79,22 +79,6 @@ else:
 if not os.path.exists(args.save_folder):
     os.makedirs(args.save_folder)
 
-train_dataset = WIDERDetection(cfg.FACE.TRAIN_FILE, mode='train')
-train_loader = data.DataLoader(train_dataset, args.batch_size,
-                               num_workers=args.num_workers,
-                               shuffle=True,
-                               collate_fn=detection_collate,
-                               pin_memory=True)
-
-val_dataset = WIDERDetection(cfg.FACE.VAL_FILE, mode='val')
-val_batchsize = args.batch_size // 2
-val_loader = data.DataLoader(val_dataset, val_batchsize,
-                             num_workers=args.num_workers,
-                             shuffle=False,
-                             collate_fn=detection_collate,
-                             pin_memory=True)
-
-min_loss = np.inf
 
 
 def train():
@@ -257,4 +241,21 @@ def adjust_learning_rate(optimizer, gamma, step):
 if __name__ == '__main__':
     #from data.config_competition_mask import cfg
     from data.config_competition_mask import cfg
+
+    train_dataset = WIDERDetection(cfg.FACE.TRAIN_FILE, mode='train')
+    train_loader = data.DataLoader(train_dataset, args.batch_size,
+                                   num_workers=args.num_workers,
+                                   shuffle=True,
+                                   collate_fn=detection_collate,
+                                   pin_memory=True)
+
+    val_dataset = WIDERDetection(cfg.FACE.VAL_FILE, mode='val')
+    val_batchsize = args.batch_size // 2
+    val_loader = data.DataLoader(val_dataset, val_batchsize,
+                                 num_workers=args.num_workers,
+                                 shuffle=False,
+                                 collate_fn=detection_collate,
+                                 pin_memory=True)
+
+    min_loss = np.inf
     train()
