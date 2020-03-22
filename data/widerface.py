@@ -26,7 +26,7 @@ class WIDERDetection(data.Dataset):
             lines = f.readlines()
 
         for line in lines:
-            line = line.strip().split()
+            line = line.strip().split(":")
             num_faces = int(line[1])
             box = []
             label = []

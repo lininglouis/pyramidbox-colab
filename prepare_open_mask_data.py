@@ -64,21 +64,20 @@ def generate_txt(img_paths, labels, filepath):
         path = img_paths[index]
         im_height, im_width = cv2.imread(path).shape[:2]
         boxes = bbox[index]
-        fw.write(path)
-        fw.write(' {}'.format(len(boxes)))
+        fw.write('{}:{}:'.format(path, len(boxes)))
         for box in boxes:
             xmin, ymin, xmax, ymax = box
-            xmin, ymin, xmax, ymax = cap_box(xmin, ymin, xmax, ymax, im_width, im_height)
             if xmax > im_width or (ymax>im_height):
                 print('break!!!==========', box, (height, width), cv2.imread(path).shape[:2], path)
                 print(img_paths[index], labels[index])
 
-            width = (xmax - xmin)
-            height = (ymax - ymin)
-            data = ' {} {} {} {} {}'.format(xmin, ymin, width, height, 1)
+            width = (xmax - xmin) + 1
+            height = (ymax - ymin) + 1
+            data = '{}:{}:{}:{}:{}'.format(xmin, ymin, width, height, 1)
             fw.write(data)
         fw.write('\n')
     fw.close()
+
 
 
 def cap_box(xmin, ymin, xmax, ymax, im_width, im_height):
