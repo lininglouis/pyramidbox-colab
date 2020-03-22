@@ -223,6 +223,9 @@ def adjust_learning_rate(optimizer, gamma, step):
         param_group['lr'] = lr
 
 
+
+
+
 if __name__ == '__main__':
 
     args = parser.parse_args()
@@ -231,6 +234,7 @@ if __name__ == '__main__':
 
     if args.dataset == 'competition':
         from data.config_competition_mask import cfg
+
     elif args.dataset == 'open':
         from data.config_open_mask import cfg
 

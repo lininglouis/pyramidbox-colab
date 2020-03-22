@@ -68,8 +68,9 @@ _C.FACE = EasyDict()
 _C.FACE.TRAIN_FILE = './data/train_open_mask.txt'
 _C.FACE.VAL_FILE = './data/val_open_mask.txt'
 _C.FACE.OVERLAP_THRESH = 0.35
-_C.FACE.DATA_DIR = r'C:\Users\ESS User\Documents\GitHub\wji_data\multi_mask_data\open_mask\all'
 
+#_C.FACE.DATA_DIR = r'C:\Users\ESS User\Documents\GitHub\wji_data\multi_mask_data\open_mask\all'
+_C.FACE.DATA_DIR = r'C:\Users\ESS User\Documents\GitHub\wji_data\multi_mask_data\open_mask\all'  #Google Colab
 
 
 # _C.FACE.FDDB_DIR = '/home/data/lj/FDDB'
