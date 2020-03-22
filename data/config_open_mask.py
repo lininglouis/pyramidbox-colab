@@ -70,7 +70,7 @@ _C.FACE.VAL_FILE = './data/val_open_mask.txt'
 _C.FACE.OVERLAP_THRESH = 0.35
 
 #_C.FACE.DATA_DIR = r'C:\Users\ESS User\Documents\GitHub\wji_data\multi_mask_data\open_mask\all'
-_C.FACE.DATA_DIR = r'/content/drive/My Drive/Colab Notebooks/multi_mask_data/open_mask/all'  #Google Colab
+_C.FACE.DATA_DIR = r'/content/drive/My Drive/xlab/multi_mask_data/virus-mask-dataset/all'  #Google Colab
 
 
 # _C.FACE.FDDB_DIR = '/home/data/lj/FDDB'
