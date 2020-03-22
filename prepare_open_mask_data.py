@@ -10,13 +10,13 @@ from sklearn.model_selection import train_test_split
 import glob
 import os
 from pathlib import Path
-
+from tqdm import tqdm
 
 
 def get_clean_data_pairs(imagePaths):
   effective_imagesPath = []
   effective_labelsPath = []
-  for imgPath in imagePaths:
+  for imgPath in tqdm(imagePaths, total = len(imagePaths)):
     imgPath = Path(imgPath)
     corre_labelPath = imgPath.parent.parent.joinpath('label').joinpath(imgPath.stem+'.xml')
     if os.path.exists(corre_labelPath) :

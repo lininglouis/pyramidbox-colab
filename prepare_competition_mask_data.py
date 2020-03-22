@@ -6,6 +6,8 @@ import os
 from data.config_competition_mask import cfg
 import cv2
 from sklearn.model_selection import train_test_split
+from tqdm import tqdm
+
 
 def read_xml(xml_file):
     tree = ET.parse(xml_file)
@@ -44,7 +46,7 @@ def get_image_label_pair(COMPETITION_MASK_DATA_DIR):
 
     effective_imagesPath = []
     effective_labelsPath = []
-    for imgPath in img_paths:
+    for imgPath in tqdm(img_paths, total=len(img_paths)):
         corre_labelPath = imgPath.replace('jpg', 'xml')
         if os.path.exists(corre_labelPath) and os.path.exists(imgPath):
             effective_imagesPath.append(imgPath)
