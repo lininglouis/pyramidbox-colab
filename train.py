@@ -60,24 +60,9 @@ parser.add_argument('--multigpu',
 parser.add_argument('--save_folder',
                     default='weights/',
                     help='Directory for saving checkpoint models')
-args = parser.parse_args()
-
-if not args.multigpu:
-    os.environ['CUDA_LAUNCH_BLOCKING'] = '1'
+parser.add_argument('--dataset', required=True)
 
 
-if torch.cuda.is_available():
-    if args.cuda:
-        torch.set_default_tensor_type('torch.cuda.FloatTensor')
-    if not args.cuda:
-        print("WARNING: It looks like you have a CUDA device, but aren't " +
-              "using CUDA.\nRun with --cuda for optimal training speed.")
-        torch.set_default_tensor_type('torch.FloatTensor')
-else:
-    torch.set_default_tensor_type('torch.FloatTensor')
-
-if not os.path.exists(args.save_folder):
-    os.makedirs(args.save_folder)
 
 
 
@@ -126,8 +111,8 @@ def train():
     for epoch in range(start_epoch, cfg.EPOCHES):
         losses = 0
         for batch_idx, (images, face_targets, head_targets, info) in enumerate(train_loader):
-            print(info)
-            print('|||||||||||||||||||||||||||||||||||||||')
+            # print(info)
+            # print('|||||||||||||||||||||||||||||||||||||||')
             if args.cuda:
                 images = Variable(images.cuda())
                 with torch.no_grad():
@@ -239,8 +224,28 @@ def adjust_learning_rate(optimizer, gamma, step):
 
 
 if __name__ == '__main__':
-    #from data.config_competition_mask import cfg
-    from data.config_competition_mask import cfg
+
+    args = parser.parse_args()
+    if not args.multigpu:
+        os.environ['CUDA_LAUNCH_BLOCKING'] = '1'
+
+    if args.dataset == 'competition':
+        from data.config_competition_mask import cfg
+    elif args.dataset == 'open':
+        from data.config_open_mask import cfg
+
+    if torch.cuda.is_available():
+        if args.cuda:
+            torch.set_default_tensor_type('torch.cuda.FloatTensor')
+        if not args.cuda:
+            print("WARNING: It looks like you have a CUDA device, but aren't " +
+                  "using CUDA.\nRun with --cuda for optimal training speed.")
+            torch.set_default_tensor_type('torch.FloatTensor')
+    else:
+        torch.set_default_tensor_type('torch.FloatTensor')
+
+    if not os.path.exists(args.save_folder):
+        os.makedirs(args.save_folder)
 
     train_dataset = WIDERDetection(cfg.FACE.TRAIN_FILE, mode='train')
     train_loader = data.DataLoader(train_dataset, args.batch_size,
@@ -258,4 +263,5 @@ if __name__ == '__main__':
                                  pin_memory=True)
 
     min_loss = np.inf
+
     train()
